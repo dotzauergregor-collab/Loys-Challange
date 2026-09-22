@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: loys-aktien-challenge
+    runtime: python
+    region: frankfurt
+    plan: 0.5c-512mb
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    healthCheckPath: /health
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: DATA_DIR
+        value: /var/data
+    disk:
+      name: loys-challenge-data
+      mountPath: /var/data
+      sizeGB: 1

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1f2d">
+<title>4 Aktien, 1 Jahr - Wer wird der Top-Performer?</title>
+<style>
+:root{
+  --navy:#0b1f2d;--blue:#136A97;--light:#abd5ef;--teal:#009ca2;--ink:#13202a;
+  --muted:#657783;--line:#dce5ea;--soft:#f4f8fa;--green:#1f7a5a;--red:#a13b3b;
+  --orange:#ff980f;--orange-soft:#fff6e8;--white:#fff;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#f4f9fc 0,#fff 54%);-webkit-font-smoothing:antialiased}
+button,input{font:inherit}
+.wrap{width:min(720px,calc(100% - 24px));margin:0 auto;padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+.hero{margin:12px 0 14px;padding:28px 20px 26px;border-radius:22px;background:var(--navy);color:#fff;position:relative;overflow:hidden;box-shadow:0 12px 34px rgba(11,31,45,.12)}
+.hero:after{content:"";position:absolute;width:270px;height:270px;border:1px solid rgba(171,213,239,.18);border-radius:50%;right:-120px;top:-140px;box-shadow:0 0 0 42px rgba(171,213,239,.035),0 0 0 84px rgba(171,213,239,.025)}
+.eyebrow{font-size:11px;font-weight:850;letter-spacing:.13em;text-transform:uppercase;color:var(--light);margin-bottom:12px;position:relative;z-index:1}
+h1{font-size:clamp(31px,9vw,46px);line-height:1.02;letter-spacing:-.045em;margin:0 0 14px;position:relative;z-index:1}
+.hero p{font-size:15px;line-height:1.52;color:rgba(255,255,255,.82);margin:0;position:relative;z-index:1;max-width:620px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:19px;position:relative;z-index:1}.chip{font-size:11px;border:1px solid rgba(255,255,255,.17);border-radius:999px;padding:7px 9px;background:rgba(255,255,255,.04)}
+.card{background:#fff;border:1px solid #e2e9ed;border-radius:18px;padding:19px 16px;box-shadow:0 10px 30px rgba(11,31,45,.055);margin-bottom:14px}
+h2{font-size:20px;line-height:1.15;margin:0 0 7px;letter-spacing:-.02em}.sub{color:var(--muted);font-size:13px;line-height:1.5;margin:0 0 16px}
+.group-title{display:flex;gap:9px;align-items:center;margin:20px 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.07em;font-weight:850;color:var(--blue)}
+.group-title.down{color:#985a00}.group-dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.pick-card{border:1px solid var(--line);border-radius:15px;padding:14px;margin-bottom:10px;background:#fff;transition:.18s ease}
+.pick-card:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px rgba(19,106,151,.08)}
+.pick-card.down{background:var(--orange-soft);border-color:#edd9b7}.pick-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.pick-num{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:var(--soft);color:var(--blue);font-weight:900;flex:none}.pick-card.down .pick-num{background:#ffedcf;color:#925400}.pick-title{font-size:14px;font-weight:800}.pick-hint{font-size:11px;color:var(--muted);margin-top:2px}
+.input-grid{display:grid;grid-template-columns:1fr;gap:10px}.field label{display:block;font-size:11px;font-weight:800;color:var(--muted);margin:0 0 6px}.field input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:12px;padding:12px 13px;background:#fff;color:var(--ink);outline:none;font-size:16px}.field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(19,106,151,.08)}.field input::placeholder{color:#9aa9b2}
+.mag7{margin:14px 0 0;padding:12px 13px;border-radius:13px;background:#f7f3ed;border:1px solid #eadfce;color:#6f5b3d;font-size:12px;line-height:1.48}.mag7 strong{color:#5f4a2c}.mag7-list{display:block;margin-top:4px}
+.user-fields{display:grid;grid-template-columns:1fr;gap:10px;margin-top:18px}.consent{display:flex;gap:10px;align-items:flex-start;margin-top:14px;color:var(--muted);font-size:12px;line-height:1.48}.consent input{margin-top:2px;width:18px;height:18px;flex:none;accent-color:var(--blue)}
+.submit-wrap{position:static;margin:18px 0 0;padding:0;background:none}.btn{width:100%;min-height:52px;border:0;border-radius:13px;background:var(--blue);color:#fff;padding:14px 16px;font-weight:850;cursor:pointer;box-shadow:0 8px 20px rgba(19,106,151,.19)}.btn:disabled{opacity:.62;cursor:not-allowed;box-shadow:none}.status{min-height:20px;margin-top:10px;font-size:12px;font-weight:750;line-height:1.4}.status.err{color:var(--red)}.status.ok{color:var(--green)}
+.success{display:none;margin-top:14px;padding:14px;border:1px solid #cfe7dc;background:#f0f9f5;border-radius:13px;color:#245f4c;font-size:12px;line-height:1.5}.success.show{display:block}.success-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:11px}.success-row{background:#fff;border:1px solid #d8ebe3;border-radius:10px;padding:9px 10px}.success-row span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#6e8c80;margin-bottom:2px}.success-row b{font-size:12px;color:#204d3d}
+.rules .rule{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #edf2f4}.rules .rule:last-child{border-bottom:0}.rule-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:#eef5f8;color:var(--blue);font-weight:900;flex:none}.rule b{display:block;font-size:13px;margin-bottom:2px}.rule span{display:block;color:var(--muted);font-size:12px;line-height:1.45}.foot{padding:2px 3px 8px;color:#788892;font-size:11px;line-height:1.5}
+@media(min-width:560px){
+  .wrap{width:min(760px,calc(100% - 36px))}.hero{margin-top:18px;padding:38px 34px 34px}.card{padding:24px}.input-grid{grid-template-columns:minmax(0,1fr) 170px}.user-fields{grid-template-columns:1fr 1fr}.submit-wrap{margin:20px 0 0;padding:0}.success-grid{grid-template-columns:1fr 1fr}
+}
+@media(min-width:900px){body{background:linear-gradient(180deg,#f4f9fc 0,#fff 65%)}.wrap{width:min(980px,calc(100% - 48px))}.hero{padding:46px 46px 40px}.main-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:18px;align-items:start}.card{margin-bottom:0}.submit-wrap{position:static;background:none;padding:0;margin:18px 0 0}.rules{position:sticky;top:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">LOYS Aktien-Challenge</div>
+    <h1>4 Aktien, 1 Jahr - Wer wird der Top-Performer?</h1>
+    <p>Nennen Sie drei Aktien, denen Sie im kommenden Jahr eine starke Entwicklung zutrauen, und eine vierte Aktie, bei der Sie fallende Kurse erwarten.</p>
+    <div class="chips"><span class="chip">Freie Eingabe</span><span class="chip">3 positive Ideen</span><span class="chip">1 Negativ-These</span><span class="chip">Mag 7 ausgeschlossen</span></div>
+  </section>
+
+  <div class="main-grid">
+    <section class="card">
+      <h2>Ihre vier Aktien</h2>
+      <p class="sub">Tragen Sie bei jeder Idee den vollständigen Aktiennamen und das Börsenkürzel selbst ein. Es gibt keine vorgegebene Auswahlliste.</p>
+
+      <div class="group-title"><span class="group-dot"></span>3 Aktien mit erwarteten steigenden Kursen</div>
+      <div id="longPicks"></div>
+
+      <div class="group-title down"><span class="group-dot"></span>1 Aktie mit erwarteten fallenden Kursen</div>
+      <div id="downPick"></div>
+
+      <div class="mag7"><strong>Magnificent Seven sind ausgeschlossen.</strong><span class="mag7-list">Apple · Microsoft · NVIDIA · Alphabet/Google · Amazon · Meta Platforms · Tesla</span></div>
+
+      <div class="user-fields">
+        <div class="field"><label for="name">Name / Kürzel</label><input id="name" autocomplete="name" maxlength="80" placeholder="z. B. Max M."></div>
+        <div class="field"><label for="email">E-Mail</label><input id="email" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="name@beispiel.de"></div>
+      </div>
+
+      <label class="consent"><input id="consent" type="checkbox"><span>Ich bestätige die Teilnahmebedingungen und die Verarbeitung meiner Angaben zur Durchführung der Challenge.</span></label>
+      <div class="status" id="status" aria-live="polite"></div>
+      <div class="success" id="success"></div>
+      <div class="submit-wrap"><button class="btn" id="submit" type="button">Auswahl verbindlich abgeben</button></div>
+    </section>
+
+    <aside class="card rules">
+      <h2>So funktioniert es</h2>
+      <p class="sub">Die Angaben werden nach dem Absenden direkt in der zentralen Excel-Datei gespeichert.</p>
+      <div class="rule"><div class="rule-icon">1</div><div><b>Drei Favoriten</b><span>Drei unterschiedliche Aktien für erwartete steigende Kurse.</span></div></div>
+      <div class="rule"><div class="rule-icon">2</div><div><b>Eine Gegenidee</b><span>Eine vierte, andere Aktie für erwartete fallende Kurse.</span></div></div>
+      <div class="rule"><div class="rule-icon">3</div><div><b>Freie Eingabe</b><span>Aktienname und Ticker werden von Ihnen selbst eingetragen.</span></div></div>
+      <div class="rule"><div class="rule-icon">4</div><div><b>Mag 7 gesperrt</b><span>Die Sperre wird beim Absenden auch serverseitig geprüft.</span></div></div>
+      <div class="rule"><div class="rule-icon">5</div><div><b>Einmalige Abgabe</b><span>Eine E-Mail-Adresse kann nur einmal teilnehmen.</span></div></div>
+    </aside>
+  </div>
+
+  <div class="foot"><strong>Prototyp:</strong> Vor einem öffentlichen Livebetrieb sollten Datenschutz, Teilnahmebedingungen, Hosting, Backups, HTTPS sowie Spam- und Bot-Schutz final geprüft werden.</div>
+</div>
+
+<script>
+const MAG7_TICKERS=new Set(['AAPL','MSFT','NVDA','GOOGL','GOOG','AMZN','META','TSLA']);
+function normName(v){return v.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim()}
+function tickerRoot(v){return v.trim().toUpperCase().split(/[\s\.:/\-]+/)[0]}
+function isMag7Name(v){const n=normName(v);if(['apple','microsoft','nvidia','alphabet','google','amazon','meta','facebook','tesla'].includes(n))return true;return ['apple inc','apple incorporated','apple computer','microsoft corp','microsoft corporation','nvidia corp','nvidia corporation','alphabet inc','google llc','amazon com','amazon inc','meta platforms','facebook inc','tesla inc','tesla motors'].some(p=>n.startsWith(p))}
+function isMag7(name,ticker){return MAG7_TICKERS.has(tickerRoot(ticker))||isMag7Name(name)}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function makePick(index,down=false){
+  const d=document.createElement('div');d.className='pick-card'+(down?' down':'');
+  const title=down?'Negativ-These':`Favorit ${index}`;
+  const hint=down?'Aktie mit erwarteten fallenden Kursen':'Aktie mit erwarteten steigenden Kursen';
+  d.innerHTML=`<div class="pick-head"><div class="pick-num">${down?'↓':index}</div><div><div class="pick-title">${title}</div><div class="pick-hint">${hint}</div></div></div><div class="input-grid"><div class="field"><label>Aktienname</label><input class="stock-name" maxlength="120" autocomplete="off" placeholder="z. B. Siemens AG"></div><div class="field"><label>Ticker</label><input class="stock-ticker" maxlength="24" autocapitalize="characters" spellcheck="false" autocomplete="off" placeholder="z. B. SIE"></div></div>`;
+  d.querySelector('.stock-ticker').addEventListener('input',e=>{const pos=e.target.selectionStart;e.target.value=e.target.value.toUpperCase();try{e.target.setSelectionRange(pos,pos)}catch(_){}});
+  return d;
+}
+function init(){const l=document.getElementById('longPicks');for(let i=1;i<=3;i++)l.appendChild(makePick(i));document.getElementById('downPick').appendChild(makePick('',true))}
+function readCard(card){return {name:card.querySelector('.stock-name').value.trim(),ticker:card.querySelector('.stock-ticker').value.trim().toUpperCase()}}
+function showError(msg){const s=document.getElementById('status');s.textContent=msg;s.className='status err';s.scrollIntoView({behavior:'smooth',block:'center'})}
+function precheck(picks){
+  for(const p of picks){if(!p.name||!p.ticker)return 'Bitte für alle vier Aktien sowohl Aktienname als auch Ticker eingeben.';if(isMag7(p.name,p.ticker))return 'Aktien der Magnificent Seven sind in dieser Challenge ausgeschlossen.'}
+  const tickers=picks.map(p=>p.ticker.trim().toUpperCase());if(new Set(tickers).size!==4)return 'Bitte vier unterschiedliche Aktien eingeben. Ein Ticker wurde mehrfach verwendet.';
+  const names=picks.map(p=>normName(p.name));if(new Set(names).size!==4)return 'Bitte vier unterschiedliche Aktien eingeben. Ein Aktienname wurde mehrfach verwendet.';
+  return '';
+}
+document.getElementById('submit').addEventListener('click',async()=>{
+  const btn=document.getElementById('submit'),status=document.getElementById('status'),success=document.getElementById('success');status.textContent='';status.className='status';success.className='success';
+  const longCards=[...document.querySelectorAll('#longPicks .pick-card')],downCard=document.querySelector('#downPick .pick-card');const longs=longCards.map(readCard),down=readCard(downCard);const all=[...longs,down];
+  const err=precheck(all);if(err){showError(err);return}
+  btn.disabled=true;btn.textContent='Wird gespeichert …';
+  try{
+    const r=await fetch('/api/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:document.getElementById('name').value,email:document.getElementById('email').value,longs,down,consent:document.getElementById('consent').checked})});const j=await r.json();if(!r.ok)throw new Error(j.error||'Speicherung fehlgeschlagen.');
+    status.textContent='Teilnahme erfolgreich gespeichert.';status.className='status ok';
+    const rows=[['Favorit 1',longs[0]],['Favorit 2',longs[1]],['Favorit 3',longs[2]],['Negativ-These',down]];
+    success.innerHTML=`<strong>Auswahl bestätigt.</strong><br>Teilnahme-ID: ${esc(j.id)}<div class="success-grid">${rows.map(([label,p])=>`<div class="success-row"><span>${label}</span><b>${esc(p.name)} — ${esc(p.ticker)}</b></div>`).join('')}</div>`;success.className='success show';
+    document.querySelectorAll('input').forEach(x=>x.disabled=true);btn.textContent='Auswahl gespeichert';btn.disabled=true;success.scrollIntoView({behavior:'smooth',block:'center'});
+  }catch(e){showError(e.message);btn.disabled=false;btn.textContent='Auswahl verbindlich abgeben'}
+});
+init();
+</script>
+</body>
+</html>
