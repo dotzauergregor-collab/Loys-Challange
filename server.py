@@ -17,8 +17,8 @@ DATA_DIR = Path(os.environ.get("DATA_DIR", str(ROOT / "data"))).resolve()
 DATA_FILE = DATA_DIR / "LOYS_Aktien_Challenge.xlsx"
 WEB_DIR = ROOT / "web"
 LOCK = Lock()
-HOST = os.environ.get("HOST", "127.0.0.1")
-PORT = int(os.environ.get("PORT", "8000"))
+HOST = os.environ.get("HOST", "0.0.0.0")
+PORT = int(os.environ.get("PORT", "1000"))
 
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 if DATA_FILE != TEMPLATE_DATA_FILE and not DATA_FILE.exists():
